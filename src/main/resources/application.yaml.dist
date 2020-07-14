@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: ms-customer
+
+  jpa:
+    properties:
+      hibernate:
+        format_sql: false
+        enable_lazy_load_no_trans: true
+    show-sql: false
+    open-in-view: false
+    database: mysql
+    hibernate:
+      ddl-auto: none
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}?useSSL=false
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+
+  redis:
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
+    database: ${REDIS_DATABASE}
+
+  cache:
+    redis:
+      time-to-live: 120000
+    type: redis
+
+  flyway:
+    enabled: true
+    schemas: ${MYSQL_DATABASE}
+    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}?useSSL=false
+    user: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+
+server:
+  port: 5080
