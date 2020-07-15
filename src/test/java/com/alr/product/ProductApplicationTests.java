@@ -2,12 +2,12 @@ package com.alr.product;
 
 import com.alr.product.application.actions.GroupAction;
 import com.alr.product.application.actions.ProductAction;
-import com.alr.product.application.mappers.GroupMapperTest;
+import com.alr.product.application.mappers.GroupMapper;
 import com.alr.product.application.mappers.ProductMapper;
 import com.alr.product.domain.contracts.services.GroupService;
 import com.alr.product.domain.contracts.services.ProductService;
 import com.alr.product.infrastructure.controllers.DocumentationController;
-import com.alr.product.infrastructure.repositories.GroupRepositoryTest;
+import com.alr.product.infrastructure.repositories.GroupRepository;
 import com.alr.product.infrastructure.repositories.ProductRepository;
 import com.alr.product.infrastructure.repositories.ProductViewRepository;
 import org.junit.jupiter.api.Assertions;
@@ -24,10 +24,10 @@ class ProductApplicationTests {
   private DocumentationController documentationController;
 
   @Autowired
-  private GroupMapperTest groupMapper;
+  private GroupMapper groupMapper;
 
   @Autowired
-  private GroupRepositoryTest groupRepository;
+  private GroupRepository groupRepository;
 
   @Autowired
   private GroupAction groupAction;
